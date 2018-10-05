@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 
         model = new TodoTableModel();
         todoList = new TodoList();
-        //todoList.addItem(new TodoItem("zkusebni_item"));
+        todoList.addItem(new TodoItem("zkusebni_item"));
         model.setList(todoList);
 
         initControlPanel();
@@ -48,9 +48,11 @@ public class MainFrame extends JFrame {
         btnAddTodo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                todoList.addItem(new TodoItem(txtAddTodo.getText()));
-                txtAddTodo.setText("");
-                model.setList(todoList);
+                if (!txtAddTodo.getText().equals("")&&!txtAddTodo.getText().equals(" ")) {
+                    todoList.addItem(new TodoItem(txtAddTodo.getText()));
+                    txtAddTodo.setText("");
+                    model.setList(todoList);
+                }
             }
         });
 

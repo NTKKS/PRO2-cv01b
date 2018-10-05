@@ -1,9 +1,15 @@
 package cz.uhk.fim.todolist.app.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TodoItem {
     private String title;
     private boolean complete;
     private String dateTime;
+
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public TodoItem() {
     }
@@ -26,6 +32,12 @@ public class TodoItem {
 
     public void setComplete(boolean complete) {
         this.complete = complete;
+        if (complete){
+            setDateTime(sdf.format(date));
+        }
+        else {
+            setDateTime("");
+        }
     }
 
     public String getDateTime() {
@@ -34,5 +46,6 @@ public class TodoItem {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+
     }
 }
