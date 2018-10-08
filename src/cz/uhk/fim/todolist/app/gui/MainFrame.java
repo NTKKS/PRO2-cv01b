@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
         btnAddTodo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!txtAddTodo.getText().equals("")&&!txtAddTodo.getText().equals(" ")) {
+                if (!txtAddTodo.getText().trim().isEmpty()) {
                     todoList.addItem(new TodoItem(txtAddTodo.getText()));
                     txtAddTodo.setText("");
                     model.setList(todoList);
