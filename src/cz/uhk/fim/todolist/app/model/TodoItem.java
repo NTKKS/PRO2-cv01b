@@ -8,9 +8,6 @@ public class TodoItem {
     private boolean complete;
     private String dateTime;
 
-    Date date = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
     public TodoItem() {
     }
 
@@ -33,6 +30,8 @@ public class TodoItem {
     public void setComplete(boolean complete) {
         this.complete = complete;
         if (complete){
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             setDateTime(sdf.format(date));
         }
         else {

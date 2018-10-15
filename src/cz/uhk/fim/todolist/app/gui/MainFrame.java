@@ -14,31 +14,32 @@ public class MainFrame extends JFrame {
     private TodoTableModel model;
     private TodoList todoList;
 
-    public MainFrame() {init();
+    public MainFrame() {
+        init();
     }
 
     private void init() {
         setTitle("TODO List App");
-        setSize(640,480);
+        setSize(640, 480);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         model = new TodoTableModel();
         todoList = new TodoList();
-        todoList.addItem(new TodoItem("zkusebni_item"));
+        //todoList.addItem(new TodoItem("zkusebni_item"));
         model.setList(todoList);
 
         initControlPanel();
         initContentPanel();
-        }
+    }
 
-        private void initContentPanel() {
+    private void initContentPanel() {
         table = new JTable();
         table.setModel(model);
         add(new JScrollPane(table), BorderLayout.CENTER);
-        }
+    }
 
-        private void initControlPanel() {
+    private void initControlPanel() {
         JPanel controlPanel = new JPanel(new BorderLayout());
 
         JLabel lblAddTodo = new JLabel("Zadej todo:");
@@ -52,8 +53,17 @@ public class MainFrame extends JFrame {
                     todoList.addItem(new TodoItem(txtAddTodo.getText()));
                     txtAddTodo.setText("");
                     model.setList(todoList);
+                } else {
+                    JDialog warn = new JDialog();
+                    JLabel lblWarn = new JLabel("Špatně vyplněné pole!");
+                    lblWarn.setHorizontalAlignment(0);
+                    warn.add(lblWarn);
+                    warn.setSize(200,80);
+                    warn.setLocationRelativeTo(null);
+                    warn.setVisible(true);
                 }
             }
+
         });
 
         controlPanel.add(lblAddTodo, BorderLayout.WEST);
